@@ -12,5 +12,18 @@ public class StringManipulatorTest{
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
+
+        StringManipulator manipulator3 = new StringManipulator();
+        String word = "Hello";
+        String subString = "llo";
+        String notSubString = "world";
+        Integer d = manipulator3.getIndexOrNull(word, subString);
+        Integer e = manipulator3.getIndexOrNull(word, notSubString);
+        System.out.println(d);
+        System.out.println(e);
+
+        StringManipulator manipulator4 = new StringManipulator();
+        String word2 = manipulator4.concatSubstring("Hello", 1, 2, "world");
+        System.out.println(word2);
     }
 }
