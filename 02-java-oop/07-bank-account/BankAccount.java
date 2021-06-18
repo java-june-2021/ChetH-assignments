@@ -10,10 +10,9 @@ public class BankAccount {
 
     //constructors
     public BankAccount(){
-        String accountNumber;
-        createAccountNumber();
-        double checkingBalance = 0.0;
-        double savingsBalance = 0.0;
+        this.accountNumber = this.createAccountNumber();
+        this.checkingBalance = 0.0;
+        this.savingsBalance = 0.0;
         numAccounts++;
     }
 
@@ -32,7 +31,7 @@ public class BankAccount {
     }
 
     //methods
-    private void createAccountNumber(){
+    private String createAccountNumber(){
         StringBuilder str = new StringBuilder();
         Random rnd = new Random();
         String possibleDigits = "0123456789";
@@ -41,7 +40,7 @@ public class BankAccount {
         }
         String newAccountNumber = str.toString();
         System.out.println("New account number: " + newAccountNumber);
-        this.accountNumber = newAccountNumber;
+        return newAccountNumber;
     }
     public void printAccountInfo(){
         System.out.println("Acct num: " + accountNumber);
