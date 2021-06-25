@@ -1,0 +1,29 @@
+*{
+	border: 0;
+	padding: 0;
+}
+
+#wrapper{
+	width: 1000px;
+	padding: 100px;
+}
+
+.mainBody{
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.date{
+	color: blue;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.time{
+	color: green;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
