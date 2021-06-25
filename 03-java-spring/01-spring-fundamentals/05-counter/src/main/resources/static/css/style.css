@@ -1,0 +1,14 @@
+*{
+	border: 0;
+	padding: 0;
+}
+
+#wrapper{
+	width: 1000px;
+	padding: 100px;
+}
+
+.mainBody{
+	align-items: center;
+	justify-content: space-evenly;
+}
