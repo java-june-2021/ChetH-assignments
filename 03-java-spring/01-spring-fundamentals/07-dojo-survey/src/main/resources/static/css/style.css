@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper{
+    width: 800px;
+}
+
+.mainBody{
+    font-size: 18px;
+}
+
+.mainBody h1{
+	margin: 0 10px 0 30px;
+    padding: 10px 0 10px 0;
+    font-size: 24px;
+}
