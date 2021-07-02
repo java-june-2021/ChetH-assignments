@@ -6,14 +6,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>edit book</title>
+        <title>new book</title>
         <meta name="description" content="Registration for an account">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
 
 <h1>New Book</h1>
-<form:form action="/books/edit/${id}" method="post" modelAttribute="book">
+<form:form action="/new" method="post" modelAttribute="book">
     <p>
         <form:label path="title">Title</form:label>
         <form:errors path="title"/>

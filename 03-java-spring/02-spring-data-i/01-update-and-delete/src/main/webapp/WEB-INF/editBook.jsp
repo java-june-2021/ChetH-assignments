@@ -6,14 +6,15 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>new book</title>
+        <title>Edit book</title>
         <meta name="description" content="Registration for an account">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     </head>
     <body>
 
-<h1>New Book</h1>
-<form:form action="/books" method="post" modelAttribute="book">
+<h1>Edit Book</h1>
+<form:form action="/edit/${id}" method="post" modelAttribute="book">
     <p>
         <form:label path="title">Title</form:label>
         <form:errors path="title"/>

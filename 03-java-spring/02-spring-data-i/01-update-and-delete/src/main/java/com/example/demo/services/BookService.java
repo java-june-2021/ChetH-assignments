@@ -1,7 +1,5 @@
 // ...
 package com.example.demo.services;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +11,7 @@ import com.example.demo.repositories.BookRepository;
 @Service
 public class BookService {
 	// initialize the books variable with values
-	private List<Book> books = new ArrayList<Book>();
+//	private List<Book> books = new ArrayList<Book>();
 
 	// adding the book repository as a dependency
 	private BookRepository bookRepository;
@@ -43,18 +41,16 @@ public class BookService {
 	}
 	
 	// edits a book
-    public void updateBook(Long id, Book book) {
+    public void updateBook(Long id, Book book, List<Book> books) {
         if (id < books.size()){
-//            books.set(id, book);
             bookRepository.save(book);
         }
     }
     
     // deletes a book
-    public void destroyBook(Long id, Book book) {
+    public void destroyBook(Long id, Book book, List<Book> books) {
         if (id < books.size()){
-//            books.remove(id);
-        	bookRepository.delete(book);
+        	bookRepository.deleteById(id);
         }
     }
 }
