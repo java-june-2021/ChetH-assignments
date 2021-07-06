@@ -35,7 +35,7 @@
 	</tbody>
 </table>
 <h1>New Language</h1>
-<form:form action="/languages/new" method="post" modelAttribute="language">
+<form:form action="/languages/new" method="post" modelAttribute="newLanguage">
     <p>
         <form:label path="name">Name</form:label>
         <form:errors path="name"/>

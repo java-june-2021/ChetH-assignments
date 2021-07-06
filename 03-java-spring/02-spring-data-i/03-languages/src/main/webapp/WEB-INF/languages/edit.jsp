@@ -14,6 +14,8 @@
     <body>
 
 <h1>Edit Book</h1>
+			<a href="/languages/delete/${id}">Delete </a>
+			<a href="/">Dashboard</a>
 <form:form action="/languages/edit/${id}" method="post" modelAttribute="language">
     <p>
         <form:label path="name">Name</form:label>

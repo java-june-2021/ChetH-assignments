@@ -27,14 +27,16 @@ public class LanguagesController {
 	public String index(Model model) {
 		List<Language> languages = languageService.allLanguages();
 		model.addAttribute("languages", languages);
-//		return "/languages/index.jsp";
-		return "redirect:/languages/new";
+		model.addAttribute("newLanguage", new Language());
+		return "/languages/index.jsp";
+//		return "redirect:/languages/new";
 	}
 	
 	@RequestMapping("/languages/{index}")
 	public String findLanguageByIndex(Model model, @PathVariable("index") Long index) {
 		Language language = languageService.findById(index);
 		model.addAttribute("language", language);
+//		model.addAttribute("newLanguage", new Language());
 		return "/languages/show.jsp";
 	}
 	
@@ -44,7 +46,7 @@ public class LanguagesController {
 	}
 
 	@RequestMapping(value="/languages/new", method=RequestMethod.POST)
-	public String addLanguage(@Valid @ModelAttribute("language") Language language, BindingResult result) {
+	public String addLanguage(@Valid @ModelAttribute("newLanguage") Language language, BindingResult result) {
 		if (result.hasErrors()) {
 			return "/languages/index.jsp";
 		} else {
@@ -79,6 +81,6 @@ public class LanguagesController {
     public String destroyLanguage(@PathVariable("id") Long id, @ModelAttribute("language") Language language) {
         List<Language> languages = languageService.allLanguages();
     	languageService.destroyLanguage(id, language, languages);
-		return "/languages/index.jsp";
+		return "redirect:/";
     }
 }

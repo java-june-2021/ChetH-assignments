@@ -11,14 +11,13 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     </head>
     <body>
-
+	<a href="/">Dashboard</a>
 <h1><c:out value="${language.name}"/></h1>
 <p>Creator: <c:out value="${language.creator}"/></p>
 <p>Version: <c:out value="${language.version}"/></p>
-<a href="/edit/${language.id}">Edit Language</a>
+<a href="/edit/${language.id}">Edit</a>
 <form action="/${language.id}" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
+<a href="/languages/delete/${id}">Delete </a>
 </form>
 </body>
 </html>
