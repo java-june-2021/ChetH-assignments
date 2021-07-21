@@ -69,6 +69,9 @@ public class UserController {
     @RequestMapping("/home")
     public String home(HttpSession session, Model model) {
         // get user from session, save them in the model and return the home page
+    	if((Long)session.getAttribute("userId") == null) {
+    		return "redirect:/login";
+    	}
     	Long userId = (Long) session.getAttribute("userId");
     	User authUser = this.userService.findUserById(userId);
     	model.addAttribute("user", authUser);
