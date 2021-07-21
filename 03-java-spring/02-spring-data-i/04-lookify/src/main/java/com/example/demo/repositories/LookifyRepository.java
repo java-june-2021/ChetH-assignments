@@ -18,10 +18,7 @@ public interface LookifyRepository extends CrudRepository<Song, Long>{
 	
 	// this method finds a song by index
 	Optional<Song> findById(Long id);
-
-	// this method counts how many songs contain a certain string
-	Long countByNameContaining(String search);
 	
-	// this method deletes a song that starts with a specific name
-	Long deleteByNameStartingWith(String search);
+	// this method finds top 10 by rating
+	List<Song> findTop10ByOrderByRatingDesc();
 }

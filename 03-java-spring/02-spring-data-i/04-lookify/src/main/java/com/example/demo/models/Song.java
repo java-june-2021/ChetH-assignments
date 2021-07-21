@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,7 +33,8 @@ public class Song {
     private String artist;
     
     @Column
-    @Size(min = 1, max = 10)
+    @Min(1)
+    @Max(10)
     private int rating;
         
     // This will not allow the createdAt column to be updated after creation
@@ -83,7 +86,7 @@ public class Song {
     	return rating;
     }
     
-    public void setVersion(int rating) {
+    public void setRating(int rating) {
     	this.rating = rating;
     }
     

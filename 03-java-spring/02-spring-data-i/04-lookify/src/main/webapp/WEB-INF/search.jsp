@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Dashboard</title>
+<title>Search Results</title>
 <meta name="description" content="Programming Languages">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -14,30 +14,30 @@
 </head>
 <body>
 	<div class="container">
-		<h1>All Songs</h1>
 		<nav>
-			<h3>
-				<a href="/new">Add New Song</a> | <a href="/topten">Top 10 Songs</a>
-			</h3>
-			<form action="/search" class="float-right">
+			<h3>Searched for: ${ artist }</h3>
+			<form action="/search">
 				<input type="text" name="artist" />
-				<button class="btn btn-primary">Search by Artists</button>
+				<button class="btn btn-primary">Search Artists</button>
 			</form>
+			<a href="/dashboard">Dashboard</a>
 		</nav>
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Name</th>
+					<th>Artist</th>
 					<th>Rating</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${songs}" var="song" varStatus="loop">
+				<c:forEach items="${songs}" var="song">
 					<tr>
 						<td><a href="/${song.id}">${song.name}</a></td>
+						<td><c:out value="${song.artist}" /></td>
 						<td><c:out value="${song.rating}" /></td>
-						<td><a href="/delete/${song.id}">Delete</a></td>
+						<td><a href="/delete/${song.id}" class="btn btn-danger">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

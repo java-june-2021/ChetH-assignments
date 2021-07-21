@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.models.Song;
 import com.example.demo.services.LookifyService;
@@ -32,8 +32,21 @@ public class LookifyController {
 	public String dashboard(Model model) {
 		List<Song> songs = lookifyService.allSongs();
 		model.addAttribute("songs", songs);
-		model.addAttribute("newSong", new Song());
 		return "/dashboard.jsp";
+	}
+	
+	@RequestMapping("/search")
+	public String searchSong(@RequestParam("artist") String artist, Model model) {
+		model.addAttribute("songs", lookifyService.songsContainingArtist(artist));
+		model.addAttribute("artist", artist);
+		return "/search.jsp";
+	}
+	
+	@RequestMapping("/topten")
+	public String topTen(Model model) {
+		List<Song> songs = lookifyService.topTenByRating();
+		model.addAttribute("songs", songs);
+		return "/topten.jsp";
 	}
 	
 	@RequestMapping("/{index}")
@@ -45,45 +58,21 @@ public class LookifyController {
 	
 	@RequestMapping("/new")
 	public String newSong(@ModelAttribute("song") Song song) {
-		return "/index.jsp";
+		return "/new.jsp";
 	}
 
 	@RequestMapping(value="/new", method=RequestMethod.POST)
-	public String addSong(@Valid @ModelAttribute("newSong") Song song, BindingResult result) {
+	public String addSong(@Valid @ModelAttribute("song") Song song, BindingResult result) {
 		if (result.hasErrors()) {
-			return "/index.jsp";
-		} else {
-			lookifyService.createSong(song);
-    		return "redirect:/";
+			return "/new.jsp";
 		}
+		lookifyService.createSong(song);
+		return "redirect:/dashboard";
 	}
-	
-    @RequestMapping("/edit/{id}")
-    public String editSong(@PathVariable("id") Long id, Model model) {
-        Song song = lookifyService.findById(id);
-        if (song != null){
-            model.addAttribute("song", song);
-            return "/edit.jsp";
-        }else{
-    		return "redirect:/";
-        }
-    }
-    
-    @PostMapping("/edit/{id}")
-    public String updateSong(@PathVariable("id") Long id, @Valid @ModelAttribute("song") Song song, BindingResult result) {
-        if (result.hasErrors()) {
-            return "/edit.jsp";
-        }else{
-            List<Song> songs = lookifyService.allSongs();
-            lookifyService.updateSong(id, song, songs);
-    		return "redirect:/";
-        }
-    }
 
     @RequestMapping(value="/delete/{id}")
-    public String destroySong(@PathVariable("id") Long id, @ModelAttribute("song") Song song) {
-        List<Song> songs = lookifyService.allSongs();
-    	lookifyService.destroySong(id, song, songs);
-		return "redirect:/";
+    public String destroySong(@PathVariable("id") Long id) {
+    	lookifyService.destroySong(id);
+		return "redirect:/dashboard";
     }
 }

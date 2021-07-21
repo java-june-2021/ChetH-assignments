@@ -37,17 +37,18 @@ public class LookifyService {
 		}
 	}
 	
-	// edits a song
-    public void updateSong(Long id, Song song, List<Song> songs) {
-    	if (id <= songs.size()){
-            lookifyRepository.save(song);
-        }
-    }
+	// retrieves top 10 by rating
+	public List<Song> topTenByRating() {
+		return lookifyRepository.findTop10ByOrderByRatingDesc();
+	}
+	
+	// retrieves songs by artist
+	public List<Song> songsContainingArtist(String artist) {
+		return lookifyRepository.findByArtistContaining(artist);
+	}
     
     // deletes a song
-    public void destroySong(Long id, Song song, List<Song> songs) {
-        if (id <= songs.size()){
-        	lookifyRepository.deleteById(id);
-        }
+    public void destroySong(Long id) {
+    	lookifyRepository.deleteById(id);
     }
 }
